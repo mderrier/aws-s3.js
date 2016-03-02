@@ -63,3 +63,11 @@ interface UploadOptions {
   s3: AWS.S3
 }
 ```
+
+
+## Roadmap
+
+- [ ] emit events
+- [ ] implement "dryRun" option
+- [ ] implement "prune" option
+- [ ] implement "fs" option
