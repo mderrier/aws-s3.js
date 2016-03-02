@@ -38,3 +38,28 @@ console.assert(task instanceof EventEmitter);
 console.assert(task.promise instanceof Promise);
 ```
 
+## API
+
+```
+upload (options: UploadOptions) => Task
+```
+
+```
+interface Task extends EventEmitter {
+  filePaths: String[],
+  promise: Promise
+}
+```
+
+Note: until `task.promise` resolves / rejects, other properties may not be available. `EventEmitter` methods _are_ always available.
+
+```
+interface UploadOptions {
+  cwd? : String, // defaults to process.cwd()
+  dryRun = false: Boolean,
+  filePaths?: String[], // defaults to glob(['**/*'])
+  fs? : Object, // defaults to require('fs')
+  prune = false : Boolean,
+  s3: AWS.S3
+}
+```
