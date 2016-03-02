@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "glob": "7.0.0",
+    "pify": "2.3.0",
     "worker-farm": "1.3.1"
   },
   "devDependencies": {
@@ -35,7 +36,7 @@
     "ava": "nyc ava",
     "eslint": "eslint --fix .",
     "fixpack": "fixpack",
-    "nyc": "nyc check-coverage -s 90 -b 90 -f 90 -l 90",
+    "nyc": "nyc check-coverage -s 90 -b 80 -f 90 -l 90",
     "posttest": "npm-run-all eslint fixpack",
     "test": "npm-run-all -s ava nyc"
   }
