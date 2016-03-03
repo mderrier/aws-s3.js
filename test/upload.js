@@ -9,13 +9,7 @@ const upload = require('..').upload;
 
 const mockS3 = {
   listObjects (options, callback) { callback(null, { Contents: [] }); },
-  upload (options, callback) {
-    if (options.ContentMD5.length !== 32 || /"/.test(options.ContentMD5)) {
-      callback(new TypeError(`InvalidDigest: ${options.ContentMD5}`));
-      return;
-    }
-    callback(null);
-  }
+  upload (options, callback) { callback(null); }
 };
 
 test('upload() missing s3 throws', (t) => {

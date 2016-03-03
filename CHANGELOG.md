@@ -1,6 +1,18 @@
 # Change Log
 
 
+## Unreleased
+
+
+### Fixed
+
+- fix equality tests when comparing MD5 hashes
+
+- drop ContentMD5 HTTP header for now (requires Base64, not hexadecimal)
+
+    - consumer should use "computeChecksums" option for `new AWS.S3()`: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+
+
 ## 1.1.0 - 2016-03-03
 
 
