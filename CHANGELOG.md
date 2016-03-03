@@ -1,6 +1,16 @@
 # Change Log
 
 
+## Unreleased
+
+
+### Fixed
+
+- pass unquoted local MD5 as ContentMD5 HTTP header
+
+- wrap local MD5s once during comparison, instead of extra unwrap
+
+
 ## 1.0.1 - 2016-03-03
 
 
