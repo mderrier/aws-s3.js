@@ -89,3 +89,4 @@ task.on('error', (error, fileName) => {
 - [ ] implement "prune" option
 - [ ] implement "fs" option
 - [ ] support S3 Buckets with more than 100 Objects
+- [ ] better detection for Content-Type header
