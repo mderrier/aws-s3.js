@@ -4,6 +4,7 @@ const path = require('path');
 
 const test = require('ava');
 
+const compareMaps = require('../lib/file-maps').compareMaps;
 const fsFilesToMap = require('../lib/file-maps').fsFilesToMap;
 const s3ContentsToMap = require('../lib/file-maps').s3ContentsToMap;
 
@@ -56,5 +57,28 @@ test('s3ContentsToMap', (t) => {
   return s3ContentsToMap(contents)
     .then((map) => {
       t.same(contents[0], map.get(contents[0].Key));
+    });
+});
+
+test('compareMaps', (t) => {
+  const cwd = path.join(__dirname, 'fixtures');
+  const filePaths = [
+    'abc.txt',
+    'sub/sub/index.html'
+  ];
+  return fsFilesToMap(null, cwd, filePaths)
+    .then((files) => {
+      let objects = new Map();
+      objects.set('abc.txt', files.get('abc.txt'));
+      objects.set('sub/extra.txt', {
+        Key: 'sub/extra.txt',
+        ETag: '29d7eff89d56ebba1c0fa56059c78c390e4a5f81',
+        Size: 112
+      });
+
+      const results = compareMaps(files, objects);
+      t.same(results.deletes, ['sub/extra.txt']);
+      t.same(results.noops, ['abc.txt']);
+      t.same(results.uploads, ['sub/sub/index.html']);
     });
 });

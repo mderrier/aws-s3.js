@@ -7,7 +7,10 @@ const test = require('ava');
 
 const upload = require('..').upload;
 
-const mockS3 = { listObjects () {}, upload () {} };
+const mockS3 = {
+  listObjects (options, callback) { callback(null, { Contents: [] }); },
+  upload () {}
+};
 
 test('upload() missing s3 throws', (t) => {
   t.throws(() => upload(), TypeError);
@@ -29,11 +32,12 @@ test('upload().promise: Promise', (t) => {
 });
 
 test('task = upload({ filePaths: [...] }); task.filePaths as provided', (t) => {
+  const cwd = path.join(__dirname, 'fixtures');
   const filePaths = [
     'abc.txt',
     'sub/sub/index.html'
   ];
-  const task = upload({ filePaths, s3: mockS3 });
+  const task = upload({ cwd, filePaths, s3: mockS3 });
   return task.promise
     .then(() => {
       t.same(task.filePaths, filePaths);
