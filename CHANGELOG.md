@@ -1,0 +1,20 @@
+# Change Log
+
+
+## 1.0.1 - 2016-03-03
+
+
+### Changed
+
+- send ContentMD5 HTTP header during upload
+
+
+### Fixed
+
+- calculate MD5 instead of SHA1 (oops)
+
+- fix `Promise`-ification of `AWS.S3#upload()`
+
+- wrap local MD5s in quotes like real ETags
+
+    - with other fixes, change-detection works to skip unchanged files
