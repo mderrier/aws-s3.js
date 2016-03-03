@@ -1,7 +1,7 @@
 # Change Log
 
 
-## Unreleased
+## 1.1.1 - 2016-03-04
 
 
 ### Fixed
