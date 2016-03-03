@@ -67,6 +67,8 @@ interface UploadOptions {
 
 ### Events
 
+- **skipped**: `fileName`
+
 - **uploading**: `fileName`
 
 - **uploaded**: `fileName`

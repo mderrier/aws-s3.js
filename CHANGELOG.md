@@ -4,6 +4,11 @@
 ## Unreleased
 
 
+### Added
+
+- new "skipped" event emitted for files that are not changed
+
+
 ### Fixed
 
 - pass unquoted local MD5 as ContentMD5 HTTP header
