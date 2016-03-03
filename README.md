@@ -65,9 +65,24 @@ interface UploadOptions {
 ```
 
 
+### Events
+
+- **uploading**: `fileName`
+
+- **uploaded**: `fileName`
+
+- **error**: `error`, `fileName`
+
+```js
+const task = upload({ /* ... */ });
+task.on('error', (error, fileName) => {
+  // TODO: ...
+});
+```
+
+
 ## Roadmap
 
-- [ ] emit events
 - [ ] implement "dryRun" option
 - [ ] implement "prune" option
 - [ ] implement "fs" option

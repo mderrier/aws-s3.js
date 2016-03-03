@@ -9,7 +9,7 @@ const upload = require('..').upload;
 
 const mockS3 = {
   listObjects (options, callback) { callback(null, { Contents: [] }); },
-  upload () {}
+  upload (options, callback) { callback(null); }
 };
 
 test('upload() missing s3 throws', (t) => {
@@ -54,5 +54,27 @@ test('task = upload({ filePaths: null }); task.filePaths glob\'ed', (t) => {
   return task.promise
     .then(() => {
       t.same(task.filePaths, filePaths);
+    });
+});
+
+test('task = upload({ filePaths: null }); events', (t) => {
+  const cwd = path.join(__dirname, 'fixtures');
+  const events = {
+    'abc.txt': { uploading: false, uploaded: false },
+    'sub/sub/index.html': { uploading: false, uploaded: false }
+  };
+  const task = upload({ cwd, s3: mockS3 });
+  task.on('uploading', (fileName) => {
+    events[fileName].uploading = true;
+  });
+  task.on('uploaded', (fileName) => {
+    events[fileName].uploaded = true;
+  });
+  return task.promise
+    .then(() => {
+      t.same(events, {
+        'abc.txt': { uploading: true, uploaded: true },
+        'sub/sub/index.html': { uploading: true, uploaded: true }
+      });
     });
 });
