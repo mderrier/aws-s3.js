@@ -1,7 +1,7 @@
 {
   "name": "@blinkmobile/aws-s3",
   "description": "our simplified wrapper for common AWS S3 operations",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "bugs": {
     "url": "https://github.com/blinkmobile/aws-s3.js/issues"
   },
@@ -24,6 +24,10 @@
     "node": ">=4.0.0",
     "npm": ">=3.0.0"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "homepage": "https://github.com/blinkmobile/aws-s3.js#readme",
   "keywords": [],
   "license": "BSD-3-Clause",
