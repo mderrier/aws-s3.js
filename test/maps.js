@@ -4,11 +4,9 @@ const path = require('path');
 
 const test = require('ava');
 
-const compareMaps = require('../lib/file-maps').compareMaps;
-const fsFilesToMap = require('../lib/file-maps').fsFilesToMap;
-const s3ContentsToMap = require('../lib/file-maps').s3ContentsToMap;
+const maps = require('../lib/maps');
 
-test('fsFileToMap', (t) => {
+test('fromFiles', (t) => {
   const cwd = path.join(__dirname, 'fixtures');
   const filePaths = [
     'abc.txt',
@@ -26,7 +24,7 @@ test('fsFileToMap', (t) => {
       Size: 112
     }
   };
-  return fsFilesToMap(null, cwd, filePaths)
+  return maps.fromFiles(null, cwd, filePaths)
     .then((map) => filePaths.forEach((key) => {
       const entry = map.get(key);
       t.ok(entry.LastModified instanceof Date);
@@ -40,7 +38,7 @@ test('fsFileToMap with missing local file', (t) => {
   const filePaths = [
     'missing.txt'
   ];
-  return fsFilesToMap(null, cwd, filePaths)
+  return maps.fromFiles(null, cwd, filePaths)
     .then(() => t.fail('resolved'))
     .catch((err) => t.ok(err));
 });
@@ -54,7 +52,7 @@ test('s3ContentsToMap', (t) => {
       Size: 123
     }
   ];
-  return s3ContentsToMap(contents)
+  return maps.fromS3Contents(contents)
     .then((map) => {
       t.same(contents[0], map.get(contents[0].Key));
     });
@@ -66,7 +64,7 @@ test('compareMaps', (t) => {
     'abc.txt',
     'sub/sub/index.html'
   ];
-  return fsFilesToMap(null, cwd, filePaths)
+  return maps.fromFiles(null, cwd, filePaths)
     .then((files) => {
       let objects = new Map();
       objects.set('abc.txt', files.get('abc.txt'));
@@ -76,7 +74,7 @@ test('compareMaps', (t) => {
         Size: 112
       });
 
-      const results = compareMaps(files, objects);
+      const results = maps.compare(files, objects);
       t.same(results.deletes, ['sub/extra.txt']);
       t.same(results.noops, ['abc.txt']);
       t.same(results.uploads, ['sub/sub/index.html']);
