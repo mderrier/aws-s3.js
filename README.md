@@ -71,3 +71,4 @@ interface UploadOptions {
 - [ ] implement "dryRun" option
 - [ ] implement "prune" option
 - [ ] implement "fs" option
+- [ ] support S3 Buckets with more than 100 Objects
