@@ -15,12 +15,12 @@ test('fromFiles', (t) => {
   const expected = {
     'abc.txt': {
       Key: 'abc.txt',
-      ETag: '6cd3556deb0da54bca060b4c39479839',
+      ETag: '"6cd3556deb0da54bca060b4c39479839"',
       Size: 13
     },
     'sub/sub/index.html': {
       Key: 'sub/sub/index.html',
-      ETag: '62f9bca5a72ef519c4877c61ac2c8ac7',
+      ETag: '"62f9bca5a72ef519c4877c61ac2c8ac7"',
       Size: 112
     }
   };
@@ -70,7 +70,7 @@ test('compareMaps', (t) => {
       objects.set('abc.txt', files.get('abc.txt'));
       objects.set('sub/extra.txt', {
         Key: 'sub/extra.txt',
-        ETag: '62f9bca5a72ef519c4877c61ac2c8ac7',
+        ETag: '"62f9bca5a72ef519c4877c61ac2c8ac7"',
         Size: 112
       });
 
