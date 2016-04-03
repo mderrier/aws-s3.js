@@ -6,9 +6,9 @@
     "url": "https://github.com/blinkmobile/aws-s3.js/issues"
   },
   "dependencies": {
-    "glob": "7.0.3",
-    "pify": "2.3.0",
-    "worker-farm": "1.3.1"
+    "glob": "^7.0.3",
+    "pify": "^2.3.0",
+    "worker-farm": "^1.3.1"
   },
   "devDependencies": {
     "ava": "^0.13.0",
