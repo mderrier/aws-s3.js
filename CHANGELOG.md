@@ -1,6 +1,19 @@
 # Change Log
 
 
+## 1.2.0 - 2016-04-04
+
+
+### Added
+
+- CC-11: "skip" option, default to `true`, bypass content that seems to match remote already (#1, @jokeyrhyme)
+
+
+### Fixed
+
+- CC-11: detect MIME type locally, and submit as "ContentType" option during upload (#1, @jokeyrhyme)
+
+
 ## 1.1.1 - 2016-03-04
 
 
