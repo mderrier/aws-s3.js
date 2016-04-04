@@ -62,7 +62,8 @@ interface UploadOptions {
   filePaths?: String[], // defaults to glob(['**/*'])
   fs? : Object, // defaults to require('fs')
   prune = false : Boolean,
-  s3: AWS.S3
+  s3: AWS.S3,
+  skip = true : Boolean
 }
 ```
 

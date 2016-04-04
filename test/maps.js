@@ -60,7 +60,7 @@ test('s3ContentsToMap', (t) => {
     });
 });
 
-test('compareMaps', (t) => {
+test('compareMaps skip=true', (t) => {
   const cwd = path.join(__dirname, 'fixtures');
   const filePaths = [
     'abc.txt',
@@ -79,9 +79,36 @@ test('compareMaps', (t) => {
         Size: 112
       });
 
-      const results = maps.compare(files, objects);
+      const results = maps.compare(files, objects, { skip: true });
       t.same(results.deletes, ['sub/extra.txt']);
       t.same(results.noops, ['abc.txt']);
       t.same(results.uploads, ['sub/sub/index.html']);
+    });
+});
+
+test('compareMaps skip=false', (t) => {
+  const cwd = path.join(__dirname, 'fixtures');
+  const filePaths = [
+    'abc.txt',
+    'sub/sub/index.html'
+  ];
+  return maps.fromFiles(null, cwd, filePaths)
+    .then((files) => {
+      let objects = new Map();
+      const abc = files.get('abc.txt');
+      // real ETags from S3 have double-quotes
+      abc.ETag = `"${abc.ETag}"`;
+      objects.set('abc.txt', abc);
+      objects.set('sub/extra.txt', { // new file, should upload
+        Key: 'sub/extra.txt',
+        ETag: '"62f9bca5a72ef519c4877c61ac2c8ac7"',
+        Size: 112
+      });
+
+      const results = maps.compare(files, objects, { skip: false });
+      t.same(results.deletes, ['sub/extra.txt']);
+      t.same(results.noops, []);
+      results.uploads.sort(); // need to make tests deterministic
+      t.same(results.uploads, ['abc.txt', 'sub/sub/index.html']);
     });
 });
