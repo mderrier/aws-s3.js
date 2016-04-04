@@ -14,11 +14,13 @@ test('fromFiles', (t) => {
   ];
   const expected = {
     'abc.txt': {
+      ContentType: 'text/plain',
       Key: 'abc.txt',
       ETag: '6cd3556deb0da54bca060b4c39479839',
       Size: 13
     },
     'sub/sub/index.html': {
+      ContentType: 'text/html',
       Key: 'sub/sub/index.html',
       ETag: '62f9bca5a72ef519c4877c61ac2c8ac7',
       Size: 112
@@ -71,7 +73,7 @@ test('compareMaps', (t) => {
       // real ETags from S3 have double-quotes
       abc.ETag = `"${abc.ETag}"`;
       objects.set('abc.txt', abc);
-      objects.set('sub/extra.txt', {
+      objects.set('sub/extra.txt', { // new file, should upload
         Key: 'sub/extra.txt',
         ETag: '"62f9bca5a72ef519c4877c61ac2c8ac7"',
         Size: 112

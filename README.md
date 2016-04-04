@@ -47,6 +47,8 @@ upload (options: UploadOptions) => Task
 ```
 interface Task extends EventEmitter {
   filePaths: String[],
+  files: Map,
+  objects: Map,
   promise: Promise
 }
 ```
@@ -85,8 +87,7 @@ task.on('error', (error, fileName) => {
 
 ## Roadmap
 
-- [ ] implement "dryRun" option
-- [ ] implement "prune" option
-- [ ] implement "fs" option
-- [ ] support S3 Buckets with more than 100 Objects
-- [ ] better detection for Content-Type header
+- [ ] "dryRun" option
+- [ ] "prune" option
+- [ ] "fs" option
+- [ ] support S3 Buckets with more than 1000 Objects
