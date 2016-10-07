@@ -34,7 +34,7 @@ test('returns all results from a bucket when the server truncates the result', (
         results.NextContinuationToken = '1';
       }
 
-      return callback(null, results);      
+      return callback(null, results);
     }
   };
   return listObjects(mockS3).then((results) => {
