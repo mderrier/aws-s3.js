@@ -4,6 +4,9 @@
 ## Unreleased
 
 
+## 2.1.0 - 2016-10-31
+
+
 ### Added
 
 - CC-17: `upload()` ignores files per ".blinkmignore"
