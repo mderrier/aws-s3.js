@@ -16,9 +16,12 @@ npm install @blinkmobile/aws-s3 aws-sdk
 const upload = require('@blinkmobile/aws-s3').upload;
 const AWS = require('aws-sdk');
 ```
+
+
 ## Requirements
 
 AWS SDK for Javascript, version >= v2.3.9
+
 
 ## Usage
 
@@ -39,6 +42,27 @@ const EventEmitter = require('events');
 console.assert(task instanceof EventEmitter);
 console.assert(task.promise instanceof Promise);
 ```
+
+
+### .blinkmignore
+
+We ignore certain files and directories [by default](https://github.com/novemberborn/ignore-by-default).
+
+The "cwd" directory may also contain a ".blinkmignore" file.
+This file is like a [.gitignore](https://git-scm.com/docs/gitignore) file.
+
+This file should contain [globs](https://www.npmjs.com/package/glob#glob-primer),
+which we combine with the above defaults for the ["ignore" option for `glob`](https://www.npmjs.com/package/glob#options).
+
+Example:
+
+```
+# we ignore comments and empty lines
+
+do-not-upload/**/anything-in-this-directory/**/*
+or-this-file.txt
+```
+
 
 ## API
 
