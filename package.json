@@ -6,6 +6,7 @@
     "url": "https://github.com/blinkmobile/aws-s3.js/issues"
   },
   "dependencies": {
+    "anymatch": "1.3.0",
     "co": "4.6.0",
     "file-type": "3.8.0",
     "glob": "7.0.3",
