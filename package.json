@@ -1,5 +1,5 @@
 {
-  "name": "mderrier/aws-s3",
+  "name": "aws-s3",
   "description": "our simplified wrapper for common AWS S3 operations",
   "version": "2.1.1",
   "bugs": {
