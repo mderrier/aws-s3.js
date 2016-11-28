@@ -1,20 +1,20 @@
 {
-  "name": "@blinkmobile/aws-s3",
+  "name": "mderrier/aws-s3",
   "description": "our simplified wrapper for common AWS S3 operations",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "bugs": {
     "url": "https://github.com/blinkmobile/aws-s3.js/issues"
   },
   "dependencies": {
-    "co": "^4.6.0",
-    "file-type": "^3.8.0",
-    "glob": "^7.0.3",
-    "ignore-by-default": "^1.0.1",
-    "lodash.chunk": "^4.0.6",
-    "mime-types": "^2.1.10",
-    "pify": "^2.3.0",
-    "read-chunk": "^2.0.0",
-    "worker-farm": "^1.3.1"
+    "co": "4.6.0",
+    "file-type": "3.8.0",
+    "glob": "7.0.3",
+    "ignore-by-default": "1.0.1",
+    "lodash.chunk": "4.0.6",
+    "mime-types": "2.1.10",
+    "pify": "2.3.0",
+    "read-chunk": "2.0.0",
+    "worker-farm": "1.3.1"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -35,13 +35,13 @@
     "index.js",
     "lib"
   ],
-  "homepage": "https://github.com/blinkmobile/aws-s3.js#readme",
+  "homepage": "https://github.com/mderrier/aws-s3.js#readme",
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blinkmobile/aws-s3.js.git"
+    "url": "git+https://github.com/lderrier/aws-s3.js.git"
   },
   "scripts": {
     "ava": "nyc ava",
